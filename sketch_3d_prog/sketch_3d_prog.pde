@@ -1,58 +1,63 @@
 int p=1;
+int a=0, z=50;
 PImage texture;
-float rotx=PI/4, roty=PI/4;
+
+PImage map;
+
+float rotx=0, roty=0;
+int bs=15;
 void setup() {
-  size(500, 500, P3D);
+  size(1000, 800, P3D);
 
   texture=loadImage("texture.jpg");
   textureMode(NORMAL);
+  map=loadImage("map.png");
 }
 
 void draw() {
+  background (200);
+pushMatrix();
 
-  background (150);
-  fill(255);
-  // rect(50,50,400,400);
-  //=================================================================
-  pushMatrix();
-  noStroke();
-  translate (width/2, height/2);
   rotateY(roty);
   rotateX(rotx);
-  scale(100);
-  texturedBox(texture);
+  
+  drawMap();
+  
+
+  drawGround();
+  
 
   popMatrix();
+  
+  
+  
+  
+
   //=================================================================
-  //   pushMatrix();
+  pushMatrix();
+  //int i=0 ;
 
-  //  translate (mouseX+30,mouseY,-50);
-  //  fill(250,250,100,10);
-  //sphere(30);
+  //while(i<=100){
 
+  // texturedBox(texture,50, 50, 50, 50);
+  //i++;
 
-  //  popMatrix();
-  //   pushMatrix();
-
-  //  translate (mouseX-30,mouseY,-50);
-  //  fill(250,250,100,10);
-  //sphere(30);
-
-
-  //  popMatrix();
-  println(""+p);
-  //   pushMatrix();
-  //   rotateX(PI/p*2);
-  //translate (mouseX,mouseY);
-  // image(image,0,0,50,50);
-  //popMatrix();
+  //}
+  popMatrix();
+  //=================================================================
 }
 
 //=================================================================
-void texturedBox(PImage tex) {
+void texturedBox(PImage tex, float size, float x, float y, float z) {
   beginShape(QUADS);
-
+  noStroke();
   texture(tex);
+  pushMatrix();
+  translate (x, y, z);
+  scale(size);
+
+
+
   //z+
   vertex(-1, -1, 1, 0, 0);
   vertex(1, -1, 1, 1, 0);
@@ -78,18 +83,16 @@ void texturedBox(PImage tex) {
   vertex(-1, 1, 1, 0, 1);
   vertex(-1, 1, -1, 0, 0);
   vertex(-1, -1, -1, 1, 0);
-//right
+  //right
   vertex(1, -1, 1, 1, 1);
   vertex(1, 1, 1, 0, 1);
   vertex(1, 1, -1, 0, 0);
   vertex(1, -1, -1, 1, 0);
   endShape();
+  popMatrix();
 }
 //=================================================================
 
-void mousePressed() {
-  p++;
-}
 
 void mouseDragged() {
   rotx= rotx +(pmouseY-mouseY)*0.01;
