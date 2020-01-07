@@ -6,7 +6,7 @@ void drawMap(){
 
   //rotation
   int mapX=0,mapY=0;
-  int worldX=0,worldY=height/2,worldZ=0;
+  int worldX=0,worldY=0,worldZ=0;
   
   while(mapY<map.height){
     

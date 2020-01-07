@@ -1,4 +1,4 @@
-int  y=450,c=0,A=0;
+int  y=50,c=0,A=0;
 void drawGround() {
 strokeWeight(1);
     stroke(0);
